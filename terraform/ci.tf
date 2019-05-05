@@ -90,6 +90,7 @@ resource "aws_codebuild_project" "diceapp" {
     type            = "GITHUB"
     location        = "https://github.com/stinkyfingers/diceapp.git"
     git_clone_depth = 1
+    buildspec       = "buildspec.yml"
   }
 
   tags = {
