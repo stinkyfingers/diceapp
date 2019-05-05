@@ -56,19 +56,6 @@ resource "aws_iam_role_policy" "diceapp_build" {
         "${aws_s3_bucket.dice.arn}",
         "${aws_s3_bucket.dice.arn}/*"
       ]
-    },
-    {
-      "Effect": "Allow",
-      "Action": [
-        "ec2:CreateNetworkInterfacePermission"
-      ],
-      "Resource": "arn:aws:ec2:region:${var.aws_account_id}:network-interface/*",
-      "Condition": {
-        "StringEquals": {
-          "ec2:Subnet": ["${var.subnets[0]}","${var.subnets[1]}"],
-          "ec2:AuthorizedService": "codebuild.amazonaws.com"
-        }
-      }
     }
   ]
 }
@@ -103,16 +90,6 @@ resource "aws_codebuild_project" "diceapp" {
     type            = "GITHUB"
     location        = "https://github.com/stinkyfingers/diceapp.git"
     git_clone_depth = 1
-  }
-
-  vpc_config {
-    vpc_id = "${var.vpc}"
-
-    subnets = "${var.subnets}"
-
-    security_group_ids = [
-      "${var.default_security_group}"
-    ]
   }
 
   tags = {
