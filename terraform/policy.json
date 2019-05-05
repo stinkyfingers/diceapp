@@ -1,0 +1,12 @@
+{
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::671958020402:user/lambda_kinesis"
+            },
+            "Action": "s3:*",
+            "Resource": "arn:aws:s3:::dice-state"
+        }
+    ]
+}
