@@ -13,3 +13,8 @@ variable "subnets" {
   type    = "list"
   default = ["subnet-7e564f19","subnet-df8ba184"]
 }
+
+variable "aws_account_id" {
+  type = "string"
+  default = "671958020402"
+}
