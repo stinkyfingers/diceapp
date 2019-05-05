@@ -106,3 +106,7 @@ resource "aws_codebuild_project" "diceapp" {
     "Environment" = "Prod"
   }
 }
+
+resource "aws_codebuild_webhook" "diceapp" {
+  project_name = "${aws_codebuild_project.diceapp.name}"
+}
