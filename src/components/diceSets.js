@@ -1,70 +1,42 @@
 import React, {useState, useEffect} from 'react';
 import Store from '../stores/dice';
-import axios from 'axios';
-
-// function useFetch(url, defaultData) {
-//     const [data, updateData] = useState(defaultData)
-//
-//     useEffect(() => {
-//       (async() => {
-//         const resp = await fetch(url)
-//         const json = await resp.json()
-//         updateData(json)
-//       })()},
-//       [url])
-//
-//     return data
-// }
-//
-// function useFetchDiceSets() {
-//     const query = `http://localhost:8080/getPublicDiceSets`
-//     return useFetch(query, {})
-// }
-
-function renderDiceSets(diceSets, setDiceSet) {
-  let diceArr = [];
-  diceSets.map((d) => {
-    diceArr.push(
-      <li key={d.id}>
-        <span className='diceSetName'>{d.name}</span>
-        <span className='diceSetPlay'><button onClick={() => setDiceSet(d)}>Play</button></span>
-      </li>
-    );
-  });
-  return (<ul>{diceArr}</ul>)
-}
+import {getDiceSets} from '../api';
+import { Link } from 'react-router-dom';
 
 // Re-render the component when the store updates.
-function DiceSets() {
+export const DiceSets = () => {
   let store = Store.useStore();
-  let diceSet = store.get('diceSet');
-  const [diceSets, setDiceSets] = useState(null);
+  const [diceSets, setDiceSets] = useState([]);
+  const user = JSON.parse(localStorage.getItem('user'));
+
   useEffect(() => {
-    const fetchData = async() => {
-      const result = await axios(`http://localhost:8080/getPublicDiceSets`);
-      setDiceSets(result.data)
+    const user = JSON.parse(localStorage.getItem('user'));
+    let userId = ''
+    if (user) {
+      userId = user.id;
     }
-    fetchData()
-  }, [])
+    getDiceSets(userId).then((resp) => {
+      setDiceSets(resp.data);
+    });
+  }, []);
 
-  let setDiceSet = store.set('diceSet');
+  const handleDiceSet = (diceSet) => {
+    store.set('diceSet')(diceSet)
+  }
 
-  return <div>
-    <NumberInput onChange={store.set('one')} value={store.get('one')} />
-    <NumberInput onChange={store.set('two')} value={store.get('two')} />
-    Sum: {store.get('one') + store.get('two')}
-    Dice set: {store.get('diceSet') ? store.get('diceSet').name : null}
-
-    {diceSets ? renderDiceSets(diceSets, setDiceSet) : null}
-  </div>
+  return (
+    <ul className='diceSets'>
+      {diceSets.map((d) => {
+        return (
+          <li key={d.id}>
+            <span className='diceSetName'>{d.name}</span>
+            <span className='diceSetPlay'><Link onClick={() => handleDiceSet(d)} to={`/diceSet/${d.id}`}>View</Link></span>
+            {user && user.id === d.userId ?
+              <span className='diceSetEdit'><Link onClick={() => handleDiceSet(d)} to={`/edit/${d.id}`}>Edit</Link></span>
+            : null}
+          </li>
+        );
+      })}
+    </ul>
+  );
 }
-
-function NumberInput(props) {
-  return <input
-    onChange={e => props.onChange(parseInt(e.target.value, 10))}
-    type="number"
-    value={props.value}
-  />
-}
-
-export default DiceSets

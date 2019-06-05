@@ -1,0 +1,32 @@
+.header {
+  background-color: #ddd;
+  width: 100%;
+  padding: 1em 0;
+}
+.links{
+  text-align: left;
+}
+
+a {
+  color: green;
+  text-decoration: none;
+  border: 1px solid green;
+  border-radius: 4px;
+  border-style: solid;
+  margin: 1em;
+  padding: .2em;
+}
+
+a:hover {
+  cursor: pointer;
+  background-color: #efe;
+}
+
+.login {
+  margin: 1em;
+}
+
+.login>label{
+  display: block;
+  text-align: right;
+}

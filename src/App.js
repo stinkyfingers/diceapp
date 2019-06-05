@@ -1,15 +1,13 @@
 import React from 'react';
 import './App.css';
-import Body from './components/body';
-import Head from './components/header';
 import Store from './stores/dice';
+import { AppRouter } from './components/router';
 
 function App() {
   return (
     <Store.Container>
       <div className="App">
-        <Head />
-        <Body />
+        <AppRouter/>
       </div>
     </Store.Container>
   );

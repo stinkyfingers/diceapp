@@ -3,7 +3,10 @@ import effects from '../effects/dice';
 
 // Create a store with an initial value.
 export default createConnectedStore({
-  one: 0,
-  two: 0,
-  diceSet: undefined
+  diceSets: [],
+  diceSet: {dice:[]},
+  play: undefined,
+  edit: undefined,
+  user: undefined,
+  error: undefined
 }, effects)
