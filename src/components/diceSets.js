@@ -31,9 +31,9 @@ export const DiceSets = () => {
         return (
           <li key={d.id}>
             <span className='diceSetName'>{d.name}</span>
-            <span className='diceSetPlay'><Link onClick={() => handleDiceSet(d)} to={`/diceSet/${d.id}`}>View</Link></span>
+            <span className='diceSetPlay'><Link className='button' onClick={() => handleDiceSet(d)} to={`/diceSet/${d.id}`}>View</Link></span>
             {user && user.id === d.userId ?
-              <span className='diceSetEdit'><Link onClick={() => handleDiceSet(d)} to={`/edit/${d.id}`}>Edit</Link></span>
+              <span className='diceSetEdit'><Link className='button' onClick={() => handleDiceSet(d)} to={`/edit/${d.id}`}>Edit</Link></span>
             : null}
           </li>
         );

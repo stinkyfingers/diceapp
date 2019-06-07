@@ -66,3 +66,16 @@ export const register = async({email, password}) => {
     return err;
   };
 }
+
+export const resetPassword = async({email}) => {
+  try {
+    return await axios({
+      method: 'post',
+      url: `${api}/resetPassword`,
+      data: JSON.stringify({email: email}),
+      headers: {'Content-Type': 'application/json'}
+    });
+  } catch (err) {
+    return err;
+  };
+}

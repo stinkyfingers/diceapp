@@ -5,6 +5,7 @@ import { DiceSet } from './diceSet';
 import { Edit } from './edit';
 import { Header } from './header';
 import { Register } from './register';
+import { Reset } from './reset';
 import { Error } from './error';
 
 export const AppRouter = props => {
@@ -16,6 +17,7 @@ export const AppRouter = props => {
       <Route path='/edit/:id' component={Edit} />
       <Route path='/register' component={Register} />
       <Route path='/create' exact={true} component={Edit} />
+      <Route path='/reset' exact={true} component={Reset} />
       <Route path='/' exact={true} component={DiceSets} />
 
     </BrowserRouter>

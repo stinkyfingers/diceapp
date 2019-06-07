@@ -9,7 +9,7 @@ export const Error = props => {
 
   return (
     <div className='error'>
-      {err.status}: {err.error}
+      {err.error}
     </div>
   );
 }

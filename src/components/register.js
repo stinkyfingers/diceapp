@@ -28,7 +28,7 @@ export const Register = props => {
         <input type='password' name='password' onChange={(e) => setPassword(e.target.value)} />
       </label>
       <div className='submit'>
-        <a onClick={() => submit()}>Submit</a>
+        <button onClick={() => submit()}>Submit</button>
       </div>
     </div>
   );

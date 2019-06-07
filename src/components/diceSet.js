@@ -7,7 +7,7 @@ function rollDice(diceSet) {
   let result = [];
   diceSet.dice.forEach((die) => {
     const term = randomSide(die.sides).value
-    result.push(<span key={term}>{term}</span>);
+    result.push(<span className='term' key={term}>{term}</span>);
   });
   return result
 }
@@ -33,7 +33,7 @@ export const DiceSet = props => {
 
   return (
     <div className='diceSet'>
-      <a onClick={() => setRoll(rollDice(diceSet))}>Roll</a>
+      <button onClick={() => setRoll(rollDice(diceSet))}>Roll</button>
       {diceSet.name}
       {roll ? renderRoll(roll) : null}
     </div>

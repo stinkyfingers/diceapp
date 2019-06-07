@@ -10,24 +10,6 @@
   display: block;
 }
 
-.name>input,.side>input {
-  width: 100%;
-  border: solid 1px green;
-  border-radius: 4px;
-  font-size: 1.1em;
-}
-
-.name>input:focus {
-  border-color: #eee;
-}
-
-.public>input {
-  border: solid 1px green;
-  border-radius: 4px;
-  font-size: 1.1em;
-}
-
-
 @media (max-width:1024px) {
   .edit {
     width: 80%;

@@ -126,23 +126,23 @@ export const Edit = props => {
         <input type='checkbox' onChange={(e) => handlePublic(e.target.checked)} checked={diceSet.public || false} />
       </label>
       <div className='addDie'>
-        <a onClick={() => handleAddDie()}>Add Die</a>
+        <button onClick={() => handleAddDie()}>Add Die</button>
       </div>
       {renderSides()}
       {diceSet.dice ? diceSet.dice.map((die, i) =>
         <div key={'die' + i} className='die'>
-        <a onClick={() => handleAddSide(i)}>Add Side</a>
-        <a onClick={() => handleDeleteDie(i)}>Delete Die</a>
+        <button onClick={() => handleAddSide(i)}>Add Side</button>
+        <button onClick={() => handleDeleteDie(i)}>Delete Die</button>
           {die.sides? die.sides.map((side, j) =>
             <div key={'side' + j} className='side'>
               <input type='text' value={side.value} onChange={(e) => handleDice(e.target.value, i, j)}/>
-              <a onClick={() => handleDeleteSide(i, j)}>X</a>
+              <button onClick={() => handleDeleteSide(i, j)}>X</button>
             </div>
           ): null}
         </div>
       ) : null}
-      <a onClick={() => save()}>Save</a>
-      <a onClick={() => props.history.push('/')}>Cancel</a>
+      <button onClick={() => save()}>Save</button>
+      <button onClick={() => props.history.push('/')}>Cancel</button>
     </div>
   );
 }

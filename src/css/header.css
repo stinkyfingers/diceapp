@@ -7,32 +7,10 @@
   text-align: left;
 }
 
-a {
-  color: green;
-  text-decoration: none;
-  border: 1px solid green;
-  border-radius: 4px;
-  border-style: solid;
-  margin: .2em;
-  padding: .2em;
-  display: inline-block;
-}
-
-a:hover {
-  cursor: pointer;
-  background-color: #efe;
-}
-
 .login {
   margin: .2em;
   width: 200px;
   padding: .2em;
-}
-
-.login>label>input{
-  border: solid 1px green;
-  border-radius: 4px;
-  font-size: 1.1em;
 }
 
 .login>label{
