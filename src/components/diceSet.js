@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Store from '../stores/dice';
 import { getDiceSet } from '../api';
+import '../css/diceSet.css';
 
 function rollDice(diceSet) {
   let result = [];
@@ -16,7 +17,7 @@ function randomSide(sides) {
 }
 
 function renderRoll(terms) {
-  return (<div className='terms'>{terms}</div>)
+  return (<div className='result'>{terms}</div>)
 }
 
 export const DiceSet = props => {
@@ -32,8 +33,8 @@ export const DiceSet = props => {
 
   return (
     <div className='diceSet'>
-      <button onClick={() => setRoll(rollDice(diceSet))}>Roll</button>
-      {diceSet.id}
+      <a onClick={() => setRoll(rollDice(diceSet))}>Roll</a>
+      {diceSet.name}
       {roll ? renderRoll(roll) : null}
     </div>
   );

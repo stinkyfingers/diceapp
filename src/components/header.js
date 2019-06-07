@@ -29,7 +29,7 @@ export const Header = props => {
         <label htmlFor='password'>Password:
           <input type='password' name='password' onChange={(e) => setPassword(e.target.value)} />
         </label>
-        <button onClick={() => handleLogin()}>Submit</button>
+        <a onClick={() => handleLogin()}>Submit</a>
       </div>
     );
   }

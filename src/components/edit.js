@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Store from '../stores/dice';
 import { saveDiceSet, getDiceSet } from '../api';
+import '../css/edit.css';
 
 export const Edit = props => {
   const store = Store.useStore();
@@ -117,31 +118,31 @@ export const Edit = props => {
   }
 
   return (
-    <div>
-      <label htmlFor='name'>Name:
+    <div className='edit'>
+      <label htmlFor='name' className='name'>Name:
         <input type='text' onChange={(e) => handleName(e.target.value)} value={diceSet.name || ''} />
       </label>
-      <label htmlFor='public'>Is Public:
+      <label htmlFor='public' className='public'>Is Public:
         <input type='checkbox' onChange={(e) => handlePublic(e.target.checked)} checked={diceSet.public || false} />
       </label>
       <div className='addDie'>
-        <button onClick={() => handleAddDie()}>Add Die</button>
+        <a onClick={() => handleAddDie()}>Add Die</a>
       </div>
       {renderSides()}
       {diceSet.dice ? diceSet.dice.map((die, i) =>
         <div key={'die' + i} className='die'>
-        <button onClick={() => handleAddSide(i)}>Add Side</button>
-        <button onClick={() => handleDeleteDie(i)}>Delete Die</button>
+        <a onClick={() => handleAddSide(i)}>Add Side</a>
+        <a onClick={() => handleDeleteDie(i)}>Delete Die</a>
           {die.sides? die.sides.map((side, j) =>
             <div key={'side' + j} className='side'>
               <input type='text' value={side.value} onChange={(e) => handleDice(e.target.value, i, j)}/>
-              <button onClick={() => handleDeleteSide(i, j)}>X</button>
+              <a onClick={() => handleDeleteSide(i, j)}>X</a>
             </div>
           ): null}
         </div>
       ) : null}
-      <button onClick={() => save()}>Save</button>
-      <button onClick={() => props.history.push('/')}>Cancel</button>
+      <a onClick={() => save()}>Save</a>
+      <a onClick={() => props.history.push('/')}>Cancel</a>
     </div>
   );
 }

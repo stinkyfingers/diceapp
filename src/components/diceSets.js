@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import Store from '../stores/dice';
-import {getDiceSets} from '../api';
+import { getDiceSets } from '../api';
 import { Link } from 'react-router-dom';
+import '../css/diceSets.css';
 
 // Re-render the component when the store updates.
 export const DiceSets = () => {
@@ -16,7 +17,7 @@ export const DiceSets = () => {
       userId = user.id;
     }
     getDiceSets(userId).then((resp) => {
-      setDiceSets(resp.data);
+      if (resp.data) setDiceSets(resp.data);
     });
   }, []);
 

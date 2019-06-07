@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { register } from '../api';
 import Store from '../stores/dice';
+import '../css/register.css';
 
 export const Register = props => {
   const store = Store.useStore();
@@ -9,7 +10,8 @@ export const Register = props => {
 
   const submit = async () => {
     const res = await register({email, password});
-    if (res.data.error) {
+    console.log(res)
+    if (res && res.data && res.data.error) {
       store.set('error')(res.data);
       return;
     }
@@ -25,7 +27,9 @@ export const Register = props => {
       <label htmlFor='password'>Password:
         <input type='password' name='password' onChange={(e) => setPassword(e.target.value)} />
       </label>
-      <button onClick={() => submit()}>Submit</button>
+      <div className='submit'>
+        <a onClick={() => submit()}>Submit</a>
+      </div>
     </div>
   );
 }

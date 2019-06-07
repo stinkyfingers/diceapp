@@ -1,0 +1,18 @@
+.diceSets {
+  list-style-type: none;
+  text-align: left;
+  width: 50%;
+  margin: auto;
+}
+
+.diceSets>li {
+  margin: .2em;
+  padding: .2em;
+  border: 1px solid #000;
+  border-radius: 4px;
+}
+
+.diceSetName {
+  width: 20em;
+  display: inline-block;
+}
